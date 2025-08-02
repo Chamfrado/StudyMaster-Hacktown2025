@@ -322,6 +322,7 @@ class StudyMaster {
         }
         
         localStorage.setItem('completed', JSON.stringify(this.completed));
+        this.search(); // Recarregar para atualizar visual dos cards
     }
 
     removeFavorite(roadmapId) {
@@ -474,7 +475,7 @@ class StudyMaster {
             const isCompleted = this.currentUser && this.completed.some(c => c.userId === this.currentUser.id && c.roadmapId === roadmap.id);
             
             return `
-                <div class="roadmap-card" onclick="app.showRoadmapDetails('${roadmap.id}')">
+                <div class="roadmap-card ${isCompleted ? 'completed' : ''}" onclick="app.showRoadmapDetails('${roadmap.id}')">
                     <div class="topic">${roadmap.topic}</div>
                     <h3>${roadmap.title}</h3>
                     <p>${roadmap.description}</p>

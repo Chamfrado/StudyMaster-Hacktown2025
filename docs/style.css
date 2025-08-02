@@ -527,11 +527,46 @@ body {
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
+    position: relative;
 }
 
 .roadmap-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.roadmap-card.completed {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border-left: 5px solid #28a745;
+}
+
+.roadmap-card.completed h3 {
+    color: #155724;
+}
+
+.roadmap-card.completed .topic {
+    background: #28a745;
+}
+
+.roadmap-card.completed .author {
+    color: #155724;
+}
+
+.roadmap-card.completed::before {
+    content: '✓';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: #28a745;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .roadmap-card h3 {
