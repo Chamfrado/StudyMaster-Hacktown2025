@@ -10,8 +10,30 @@
 <body>
     <header class="header">
         <div class="container">
-            <h1><i class="fas fa-map"></i> StudyMaster</h1>
-            <p>Seu guia personalizado para dominar qualquer tecnologia</p>
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-map"></i> StudyMaster</h1>
+                    <p>Seu guia personalizado para dominar qualquer tecnologia</p>
+                </div>
+                <div class="user-menu">
+                    <div id="loginSection" class="login-section">
+                        <button id="loginBtn" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                        <button id="registerBtn" class="auth-btn"><i class="fas fa-user-plus"></i> Cadastro</button>
+                    </div>
+                    <div id="userSection" class="user-section hidden">
+                        <span id="welcomeUser">Olá, usuário!</span>
+                        <div class="user-dropdown">
+                            <button id="userMenuBtn" class="user-menu-btn"><i class="fas fa-user-circle"></i></button>
+                            <div id="userDropdown" class="dropdown-content hidden">
+                                <a href="#" id="myRoadmapsBtn"><i class="fas fa-list"></i> Meus Roadmaps</a>
+                                <a href="#" id="favoritesBtn"><i class="fas fa-heart"></i> Favoritos</a>
+                                <a href="#" id="completedBtn"><i class="fas fa-check-circle"></i> Concluídos</a>
+                                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -145,6 +167,81 @@
                     <button type="submit" id="submitRoadmap">Criar Roadmap</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content auth-modal">
+            <span class="close-login">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">Usuário:</label>
+                    <input type="text" id="loginUsername" required placeholder="Digite seu usuário">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Senha:</label>
+                    <input type="password" id="loginPassword" required placeholder="Digite sua senha">
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelLogin">Cancelar</button>
+                    <button type="submit">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Cadastro -->
+    <div id="registerModal" class="modal hidden">
+        <div class="modal-content auth-modal">
+            <span class="close-register">&times;</span>
+            <h2>Cadastro</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Nome:</label>
+                    <input type="text" id="registerName" required placeholder="Digite seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="registerUsername">Usuário:</label>
+                    <input type="text" id="registerUsername" required placeholder="Escolha um usuário">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Senha:</label>
+                    <input type="password" id="registerPassword" required placeholder="Escolha uma senha">
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelRegister">Cancelar</button>
+                    <button type="submit">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Meus Roadmaps -->
+    <div id="myRoadmapsModal" class="modal hidden">
+        <div class="modal-content manage-modal">
+            <span class="close-manage">&times;</span>
+            <h2>Meus Roadmaps</h2>
+            <div id="myRoadmapsList"></div>
+        </div>
+    </div>
+
+    <!-- Modal Favoritos -->
+    <div id="favoritesModal" class="modal hidden">
+        <div class="modal-content manage-modal">
+            <span class="close-favorites">&times;</span>
+            <h2>Roadmaps Favoritos</h2>
+            <div id="favoritesList"></div>
+        </div>
+    </div>
+
+    <!-- Modal Concluídos -->
+    <div id="completedModal" class="modal hidden">
+        <div class="modal-content manage-modal">
+            <span class="close-completed">&times;</span>
+            <h2>Roadmaps Concluídos</h2>
+            <div id="completedList"></div>
         </div>
     </div>
 
