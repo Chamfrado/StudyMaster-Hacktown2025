@@ -38,6 +38,9 @@ class StudyMaster {
         this.initEventListeners();
         this.updateUserInterface();
         this.loadInitialRoadmaps();
+        
+        // Container de notificações
+        this.notificationContainer = document.getElementById('notificationContainer');
     }
 
     initializeDefaultUser() {
@@ -152,7 +155,7 @@ class StudyMaster {
             document.getElementById('loginForm').reset();
             this.loadInitialRoadmaps();
         } else {
-            alert('Usuário ou senha incorretos!');
+            this.showNotification('Erro de Login', 'Usuário ou senha incorretos!', 'error');
         }
     }
 
@@ -163,7 +166,7 @@ class StudyMaster {
         const password = document.getElementById('registerPassword').value;
         
         if (this.users.find(u => u.username === username)) {
-            alert('Usuário já existe!');
+            this.showNotification('Erro de Cadastro', 'Usuário já existe!', 'error');
             return;
         }
         
@@ -184,7 +187,7 @@ class StudyMaster {
         this.registerModal.classList.add('hidden');
         document.getElementById('registerForm').reset();
         
-        alert('Cadastro realizado com sucesso!');
+        this.showNotification('Sucesso!', 'Cadastro realizado com sucesso!', 'success');
     }
 
     logout() {
@@ -284,7 +287,7 @@ class StudyMaster {
 
     toggleFavorite(roadmapId) {
         if (!this.currentUser) {
-            alert('Faça login para favoritar roadmaps!');
+            this.showNotification('Login Necessário', 'Faça login para favoritar roadmaps!', 'warning');
             return;
         }
         
@@ -305,7 +308,7 @@ class StudyMaster {
 
     toggleCompleted(roadmapId) {
         if (!this.currentUser) {
-            alert('Faça login para marcar roadmaps como concluídos!');
+            this.showNotification('Login Necessário', 'Faça login para marcar roadmaps como concluídos!', 'warning');
             return;
         }
         
@@ -413,7 +416,7 @@ class StudyMaster {
 
     openCreateModal() {
         if (!this.currentUser) {
-            alert('Faça login para criar roadmaps!');
+            this.showNotification('Login Necessário', 'Faça login para criar roadmaps!', 'warning');
             return;
         }
         
@@ -583,7 +586,7 @@ class StudyMaster {
         });
         
         if (formData.steps.length < 3) {
-            alert('Por favor, adicione pelo menos 3 passos ao roadmap.');
+            this.showNotification('Erro de Validação', 'Por favor, adicione pelo menos 3 passos ao roadmap.', 'error');
             return;
         }
         
@@ -626,7 +629,7 @@ class StudyMaster {
         // Recarregar roadmaps
         this.search();
         
-        alert(this.createForm.dataset.editId ? 'Roadmap atualizado com sucesso!' : 'Roadmap criado com sucesso!');
+        this.showNotification('Sucesso!', this.createForm.dataset.editId ? 'Roadmap atualizado com sucesso!' : 'Roadmap criado com sucesso!', 'success');
     }
 
     showLoading() {
@@ -643,6 +646,45 @@ class StudyMaster {
         this.hideLoading();
         this.results.innerHTML = '';
         this.noResults.classList.remove('hidden');
+    }
+    
+    showNotification(title, message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        
+        const icons = {
+            success: 'fas fa-check-circle',
+            error: 'fas fa-exclamation-circle',
+            warning: 'fas fa-exclamation-triangle',
+            info: 'fas fa-info-circle'
+        };
+        
+        notification.innerHTML = `
+            <div class="notification-icon">
+                <i class="${icons[type]}"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">${title}</div>
+                <div class="notification-message">${message}</div>
+            </div>
+            <button class="notification-close" onclick="this.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        
+        this.notificationContainer.appendChild(notification);
+        
+        // Auto remover após 5 segundos
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.classList.add('removing');
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 300);
+            }
+        }, 5000);
     }
 }
 
