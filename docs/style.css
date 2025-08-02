@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F97316 100%);
     min-height: 100vh;
     color: #333;
 }
@@ -18,11 +18,13 @@ body {
 }
 
 .header {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(139, 92, 246, 0.2);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(236, 72, 153, 0.3);
     padding: 2rem 0;
     color: white;
     margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
 }
 
 .header-content {
@@ -55,19 +57,22 @@ body {
 }
 
 .auth-btn {
-    background: rgba(255,255,255,0.2);
+    background: rgba(236, 72, 153, 0.3);
     color: white;
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 2px solid rgba(236, 72, 153, 0.5);
     padding: 0.5rem 1rem;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s;
     font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.2);
 }
 
 .auth-btn:hover {
-    background: rgba(255,255,255,0.3);
-    border-color: rgba(255,255,255,0.5);
+    background: rgba(236, 72, 153, 0.5);
+    border-color: rgba(236, 72, 153, 0.8);
+    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+    transform: translateY(-2px);
 }
 
 .user-section {
@@ -155,17 +160,20 @@ body {
 }
 
 #searchBtn {
-    background: #667eea;
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
     color: white;
     border: none;
     padding: 1rem 1.5rem;
     cursor: pointer;
     font-size: 1.1rem;
-    transition: background 0.3s;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
 #searchBtn:hover {
-    background: #5a6fd8;
+    background: linear-gradient(135deg, #7C3AED, #DB2777);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
 }
 
 .filters-container {
@@ -211,7 +219,7 @@ body {
 
 .create-btn {
     padding: 0.8rem 1.5rem;
-    background: #667eea;
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
     color: white;
     border: none;
     border-radius: 25px;
@@ -219,11 +227,13 @@ body {
     font-size: 0.9rem;
     transition: all 0.3s;
     font-weight: 600;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
 .create-btn:hover {
-    background: #5a6fd8;
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, #7C3AED, #DB2777);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
 }
 
 .create-modal {
@@ -257,7 +267,8 @@ body {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #8B5CF6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
 .form-group textarea {
@@ -266,11 +277,12 @@ body {
 }
 
 .step-input {
-    background: #f8f9fa;
+    background: rgba(248, 250, 255, 0.8);
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 1rem;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #8B5CF6;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.1);
 }
 
 .step-input input {
@@ -278,17 +290,21 @@ body {
 }
 
 #addStepBtn {
-    background: #28a745;
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
     color: white;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.9rem;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
 }
 
 #addStepBtn:hover {
-    background: #218838;
+    background: linear-gradient(135deg, #7C3AED, #DB2777);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
 }
 
 .form-actions {
@@ -317,12 +333,15 @@ body {
 }
 
 #submitRoadmap {
-    background: #667eea;
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
     color: white;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
 #submitRoadmap:hover {
-    background: #5a6fd8;
+    background: linear-gradient(135deg, #7C3AED, #DB2777);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
 }
 
 .close-create {
@@ -359,8 +378,9 @@ body {
 }
 
 .roadmap-item h4 {
-    color: #667eea;
+    color: #8B5CF6;
     margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(139, 92, 246, 0.2);
 }
 
 .roadmap-item p {
@@ -525,11 +545,12 @@ body {
 }
 
 .notification {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 16px 20px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    border-left: 4px solid #667eea;
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+    border-left: 4px solid #8B5CF6;
     min-width: 300px;
     max-width: 400px;
     display: flex;
@@ -554,7 +575,7 @@ body {
 }
 
 .notification.info {
-    border-left-color: #17a2b8;
+    border-left-color: #8B5CF6;
 }
 
 .notification-icon {
@@ -575,7 +596,7 @@ body {
 }
 
 .notification.info .notification-icon {
-    color: #17a2b8;
+    color: #8B5CF6;
 }
 
 .notification-content {
@@ -674,16 +695,17 @@ body {
 }
 
 .roadmap-card.completed {
-    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-    border-left: 5px solid #28a745;
+    background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+    border-left: 5px solid #8B5CF6;
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
 }
 
 .roadmap-card.completed h3 {
-    color: #155724;
+    color: #7C3AED;
 }
 
 .roadmap-card.completed .topic {
-    background: #28a745;
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
 }
 
 .roadmap-card.completed .author {
@@ -695,7 +717,7 @@ body {
     position: absolute;
     top: 10px;
     right: 15px;
-    background: #28a745;
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
     color: white;
     width: 25px;
     height: 25px;
@@ -705,22 +727,25 @@ body {
     justify-content: center;
     font-weight: bold;
     font-size: 14px;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
 }
 
 .roadmap-card h3 {
-    color: #667eea;
+    color: #8B5CF6;
     margin-bottom: 0.5rem;
     font-size: 1.3rem;
+    text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
 }
 
 .roadmap-card .topic {
-    background: #667eea;
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
     color: white;
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.8rem;
     display: inline-block;
     margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
 }
 
 .roadmap-card p {
@@ -825,16 +850,18 @@ body {
 }
 
 .roadmap-step {
-    background: #f8f9fa;
-    border-left: 4px solid #667eea;
+    background: linear-gradient(135deg, rgba(248, 250, 255, 0.8), rgba(252, 231, 243, 0.8));
+    border-left: 4px solid #8B5CF6;
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 0 10px 10px 0;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.1);
 }
 
 .roadmap-step h4 {
-    color: #667eea;
+    color: #8B5CF6;
     margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(139, 92, 246, 0.2);
 }
 
 @media (max-width: 768px) {
