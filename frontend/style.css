@@ -21,9 +21,20 @@ body {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     padding: 2rem 0;
-    text-align: center;
     color: white;
     margin-bottom: 2rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    text-align: left;
 }
 
 .header h1 {
@@ -35,6 +46,90 @@ body {
 .header p {
     font-size: 1.2rem;
     opacity: 0.9;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.auth-btn {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.auth-btn:hover {
+    background: rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.5);
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#welcomeUser {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.user-dropdown {
+    position: relative;
+}
+
+.user-menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.user-menu-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.dropdown-content {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    margin-top: 0.5rem;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+    background: #f1f1f1;
+}
+
+.dropdown-content a:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.dropdown-content a:last-child {
+    border-radius: 0 0 8px 8px;
 }
 
 .search-section {
@@ -243,6 +338,181 @@ body {
     color: #333;
 }
 
+.auth-modal {
+    max-width: 400px;
+}
+
+.manage-modal {
+    max-width: 800px;
+    max-height: 80vh;
+}
+
+.roadmap-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.roadmap-item h4 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+}
+
+.roadmap-item p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.roadmap-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.roadmap-actions button {
+    padding: 0.3rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.edit-btn {
+    background: #28a745;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #218838;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.favorite-btn {
+    background: #ffc107;
+    color: #212529;
+}
+
+.favorite-btn:hover {
+    background: #e0a800;
+}
+
+.complete-btn {
+    background: #17a2b8;
+    color: white;
+}
+
+.complete-btn:hover {
+    background: #138496;
+}
+
+.close-login, .close-register, .close-manage, .close-favorites, .close-completed {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #999;
+}
+
+.close-login:hover, .close-register:hover, .close-manage:hover, .close-favorites:hover, .close-completed:hover {
+    color: #333;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: flex-end;
+}
+
+.card-actions button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.card-actions .favorite-btn {
+    background: #e9ecef;
+    color: #6c757d;
+}
+
+.card-actions .favorite-btn:hover,
+.card-actions .favorite-btn.active {
+    background: #dc3545;
+    color: white;
+}
+
+.card-actions .complete-btn {
+    background: #e9ecef;
+    color: #6c757d;
+}
+
+.card-actions .complete-btn:hover,
+.card-actions .complete-btn.active {
+    background: #28a745;
+    color: white;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.modal-actions button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-actions .favorite-btn {
+    background: #e9ecef;
+    color: #6c757d;
+}
+
+.modal-actions .favorite-btn:hover,
+.modal-actions .favorite-btn.active {
+    background: #dc3545;
+    color: white;
+}
+
+.modal-actions .complete-btn {
+    background: #e9ecef;
+    color: #6c757d;
+}
+
+.modal-actions .complete-btn:hover,
+.modal-actions .complete-btn.active {
+    background: #28a745;
+    color: white;
+}
+
 .results-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -399,6 +669,15 @@ body {
         font-size: 2rem;
     }
     
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo {
+        text-align: center;
+    }
+    
     .results-grid {
         grid-template-columns: 1fr;
     }
@@ -424,12 +703,25 @@ body {
         max-width: 300px;
     }
     
-    .create-modal {
+    .create-modal,
+    .auth-modal,
+    .manage-modal {
         margin: 10px;
         max-width: calc(100% - 20px);
     }
     
     .form-actions {
         flex-direction: column;
+    }
+    
+    .roadmap-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .roadmap-actions {
+        width: 100%;
+        justify-content: center;
     }
 }
