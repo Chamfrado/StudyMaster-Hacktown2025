@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyMaster - Portal de Roadmaps</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1><i class="fas fa-map"></i> StudyMaster</h1>
+            <p>Seu guia personalizado para dominar qualquer tecnologia</p>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="search-section">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Pesquise por um tema (ex: Algoritmos, React, Python...)">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="filters-container">
+                    <select id="difficultyFilter">
+                        <option value="">Todas as dificuldades</option>
+                        <option value="Iniciante">Iniciante</option>
+                        <option value="Intermediário">Intermediário</option>
+                        <option value="Avançado">Avançado</option>
+                    </select>
+                    
+                    <select id="categoryFilter">
+                        <option value="">Todas as categorias</option>
+                        <option value="web">Desenvolvimento Web</option>
+                        <option value="mobile">Mobile</option>
+                        <option value="backend">Backend</option>
+                        <option value="devops">DevOps</option>
+                        <option value="data">Data Science/ML</option>
+                        <option value="game">Game Development</option>
+                        <option value="design">Design</option>
+                        <option value="business">Negócios</option>
+                    </select>
+                    
+                    <button id="clearFilters">Limpar Filtros</button>
+                    <button id="createRoadmapBtn" class="create-btn"><i class="fas fa-plus"></i> Criar Roadmap</button>
+                </div>
+            </section>
+
+            <section class="results-section">
+                <div id="loading" class="loading hidden">
+                    <i class="fas fa-spinner fa-spin"></i> Buscando roadmaps...
+                </div>
+                
+                <div id="results" class="results-grid"></div>
+                
+                <div id="noResults" class="no-results hidden">
+                    <i class="fas fa-search"></i>
+                    <h3>Nenhum roadmap encontrado</h3>
+                    <p>Tente pesquisar por outros termos como "JavaScript", "Python", "Algoritmos"</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="roadmapModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="roadmapDetails"></div>
+        </div>
+    </div>
+
+    <div id="createModal" class="modal hidden">
+        <div class="modal-content create-modal">
+            <span class="close-create">&times;</span>
+            <h2>Criar Novo Roadmap</h2>
+            <form id="createRoadmapForm">
+                <div class="form-group">
+                    <label for="authorName">Seu Nome:</label>
+                    <input type="text" id="authorName" required placeholder="Digite seu nome">
+                </div>
+                
+                <div class="form-group">
+                    <label for="roadmapTitle">Título do Roadmap:</label>
+                    <input type="text" id="roadmapTitle" required placeholder="Ex: React para Iniciantes">
+                </div>
+                
+                <div class="form-group">
+                    <label for="roadmapTopic">Tópico:</label>
+                    <input type="text" id="roadmapTopic" required placeholder="Ex: react">
+                </div>
+                
+                <div class="form-group">
+                    <label for="roadmapCategory">Categoria:</label>
+                    <select id="roadmapCategory" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="web">Desenvolvimento Web</option>
+                        <option value="mobile">Mobile</option>
+                        <option value="backend">Backend</option>
+                        <option value="devops">DevOps</option>
+                        <option value="data">Data Science/ML</option>
+                        <option value="game">Game Development</option>
+                        <option value="design">Design</option>
+                        <option value="business">Negócios</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roadmapDifficulty">Dificuldade:</label>
+                    <select id="roadmapDifficulty" required>
+                        <option value="">Selecione a dificuldade</option>
+                        <option value="Iniciante">Iniciante</option>
+                        <option value="Intermediário">Intermediário</option>
+                        <option value="Avançado">Avançado</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roadmapDescription">Descrição:</label>
+                    <textarea id="roadmapDescription" required placeholder="Descreva o que será aprendido neste roadmap"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Passos do Roadmap (mínimo 3):</label>
+                    <div id="stepsContainer">
+                        <div class="step-input">
+                            <input type="text" placeholder="Título do passo 1" class="step-title" required>
+                            <textarea placeholder="Descrição do passo 1" class="step-description" required></textarea>
+                        </div>
+                        <div class="step-input">
+                            <input type="text" placeholder="Título do passo 2" class="step-title" required>
+                            <textarea placeholder="Descrição do passo 2" class="step-description" required></textarea>
+                        </div>
+                        <div class="step-input">
+                            <input type="text" placeholder="Título do passo 3" class="step-title" required>
+                            <textarea placeholder="Descrição do passo 3" class="step-description" required></textarea>
+                        </div>
+                    </div>
+                    <button type="button" id="addStepBtn">+ Adicionar Passo</button>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="cancelCreate">Cancelar</button>
+                    <button type="submit" id="submitRoadmap">Criar Roadmap</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

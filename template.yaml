@@ -1,0 +1,110 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: StudyMaster - Portal de Roadmaps de Programação
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: python3.9
+    Environment:
+      Variables:
+        ROADMAPS_TABLE: !Ref RoadmapsTable
+
+Resources:
+  # API Gateway
+  StudyMasterApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Cors:
+        AllowMethods: "'GET,POST,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
+
+  # Lambda Functions
+  SearchRoadmapsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/
+      Handler: search_roadmaps.lambda_handler
+      Events:
+        SearchApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref StudyMasterApi
+            Path: /search
+            Method: get
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref RoadmapsTable
+
+  GetRoadmapFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/
+      Handler: get_roadmap.lambda_handler
+      Events:
+        GetApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref StudyMasterApi
+            Path: /roadmap/{id}
+            Method: get
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref RoadmapsTable
+
+  # DynamoDB Table
+  RoadmapsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: StudyMaster-Roadmaps
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: topic
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: topic-index
+          KeySchema:
+            - AttributeName: topic
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+
+  # S3 Bucket para frontend
+  WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'studymaster-frontend-${AWS::AccountId}'
+      WebsiteConfiguration:
+        IndexDocument: index.html
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+
+  WebsiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebsiteBucket
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Sub '${WebsiteBucket}/*'
+
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint URL"
+    Value: !Sub "https://${StudyMasterApi}.execute-api.${AWS::Region}.amazonaws.com/prod/"
+  
+  WebsiteUrl:
+    Description: "Website URL"
+    Value: !GetAtt WebsiteBucket.WebsiteURL
